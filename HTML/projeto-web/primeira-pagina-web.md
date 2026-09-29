@@ -11,8 +11,13 @@
     <img src="fortnite.jpg"
          alt="Imagem oficial da final do Fortnite Global Championship 2026"
          width="600">
-<a href="(https://github.com/akiratakenouchi-debug/DesenvolvimentodeInterfaces_ADS/blob/main/HTML/fortnite.jpg)">Caminho absoluto</a>
-    <h2>Sobre o campeonato</h2>
+    <p>
+        
+    </p>
+<a href="(https://github.com/akiratakenouchi-debug/DesenvolvimentodeInterfaces_ADS/blob/main/HTML/fortnite.jpg)">
+    <a href="(https://github.com/akiratakenouchi-debug/DesenvolvimentodeInterfaces_ADS/blob/main/HTML/fortnite.jpg)" target="_blank">Link Externo</a>    
+    Caminho absoluto</a>
+   <h2>Sobre o campeonato</h2>
     <p>
         O Fortnite Global Championship 2026 é o campeonato mundial de Fortnite.
         Ele aconteceu no último fim de semana, em Antwerp, na Bélgica, e reuniu
