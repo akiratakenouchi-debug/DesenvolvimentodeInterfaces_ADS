@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Média - Aula 3</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 24px 16px; min-height: 100vh;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #e8eef5; color: #1f2a37;
+    }
+    .app { max-width: 640px; margin: 0 auto; display: grid; gap: 20px; }
+    .cartao {
+      background: #fff; border-radius: 12px; padding: 24px;
+      box-shadow: 0 6px 20px rgba(31, 42, 55, 0.1);
+    }
+    h1 { margin: 0 0 4px; font-size: 1.5rem; }
+    h2 { margin: 0 0 12px; font-size: 1.1rem; }
+    .subtitulo { margin: 0 0 16px; color: #5b6776; font-size: 0.95rem; }
+
+    label { display: block; margin: 12px 0 4px; font-weight: 600; font-size: 0.9rem; }
+    input {
+      width: 100%; padding: 10px 12px; font-size: 1rem;
+      border: 1px solid #c3ccd6; border-radius: 8px;
+    }
+    input:focus { outline: 3px solid #9cc2f0; border-color: #2563a8; }
+    .notas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+    .botoes { display: flex; gap: 8px; margin-top: 18px; }
+    button {
+      flex: 1; padding: 11px; font-size: 1rem; font-weight: 600;
+      border: none; border-radius: 8px; cursor: pointer;
+    }
+    .primario { background: #2563a8; color: #fff; }
+    .primario:hover { background: #1c4f89; }
+    .secundario { background: #e1e6ec; color: #1f2a37; }
+    .secundario:hover { background: #d0d7df; }
+
+    .mensagem { display: none; margin-top: 16px; padding: 12px 14px; border-radius: 8px; font-weight: 600; }
+    .mensagem.erro        { background: #fadcdc; color: #8f1d1d; }
+    .mensagem.aprovado    { background: #d9f2e0; color: #17622e; }
+    .mensagem.recuperacao { background: #fff1cc; color: #7a5600; }
+    .mensagem.reprovado   { background: #fadcdc; color: #8f1d1d; }
+
+    .resumo { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; }
+    .resumo div { background: #f3f6fa; border-radius: 8px; padding: 10px 4px; font-size: 0.8rem; }
+    .resumo strong { display: block; font-size: 1.4rem; }
+
+    .tabela-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.92rem; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid #e1e6ec; }
+    .vazio { color: #5b6776; margin: 12px 0 0; }
+    .tag { font-weight: 700; }
+    .tag.aprovado { color: #17622e; }
+    .tag.recuperacao { color: #7a5600; }
+    .tag.reprovado { color: #8f1d1d; }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <section class="cartao">
+      <h1>Calculadora de Média</h1>
+      <p class="subtitulo">Cadastre o aluno e as 3 notas (de 0 a 10).</p>
+
+      <form id="formulario" novalidate>
+        <label for="nome">Nome do aluno</label>
+        <input type="text" id="nome" placeholder="Ex.: Ana Souza" autocomplete="off">
+
+        <div class="notas">
+          <div>
+            <label for="nota1">Nota 1</label>
+            <input type="number" id="nota1" min="0" max="10" step="0.1">
+          </div>
+          <div>
+            <label for="nota2">Nota 2</label>
+            <input type="number" id="nota2" min="0" max="10" step="0.1">
+          </div>
+          <div>
+            <label for="nota3">Nota 3</label>
+            <input type="number" id="nota3" min="0" max="10" step="0.1">
+          </div>
+        </div>
+
+        <div class="botoes">
+          <button type="submit" class="primario">Calcular média</button>
+          <button type="button" id="btnLimpar" class="secundario">Limpar campos</button>
+        </div>
+      </form>
+
+      <div id="mensagem" class="mensagem" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="cartao">
+      <h2>Resumo da turma</h2>
+      <div class="resumo">
+        <div><strong id="totalAprovados">0</strong>Aprovados</div>
+        <div><strong id="totalRecuperacao">0</strong>Recuperação</div>
+        <div><strong id="totalReprovados">0</strong>Reprovados</div>
+        <div><strong id="totalGeral">0</strong>Total</div>
+      </div>
+    </section>
+
+    <section class="cartao">
+      <h2>Alunos cadastrados</h2>
+      <p id="vazio" class="vazio">Nenhum aluno cadastrado ainda.</p>
+      <div class="tabela-wrap">
+        <table id="tabela" hidden>
+          <thead>
+            <tr><th>Aluno</th><th>Notas</th><th>Média</th><th>Situação</th></tr>
+          </thead>
+          <tbody id="corpoTabela"></tbody>
+        </table>
+      </div>
+      <div class="botoes">
+        <button type="button" id="btnLimparLista" class="secundario">Limpar lista</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
